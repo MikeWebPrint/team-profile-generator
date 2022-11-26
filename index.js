@@ -3,37 +3,26 @@ const fs = require('fs');
 const addMember = require('./lib/addMember');
 const empQuest = require('./lib/empQuest');
 
-// const employee = require('./lib/employee');
 const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 const team = [];
 
-// const Mike = new Manager ('Mike', 45, 'mike@test.com', 46)
-// const Jackie = new Intern('Jackie', 123, 'jackie@test.com', 'RWU')
-// const Bob = new Intern('Bob', 456, 'bob@test.com', 'uconn')
-
-// const Joe = new Engineer('Joe', 36, 'joe@test.com', 'bigJoeD');
-// console.log(Mike);
-// console.log(Joe);
-// console.log(Jackie);
-// console.log(Bob);
-
-
-function inquireMember(team) {
+inquireMember = () => {
   inquirer.prompt(addMember)
     .then((answers) => {
       if (answers.addMember === 'Yes') {
         createMember();
       } else {
+        console.log();
         if (team.length > 0) {
-          team => createTeam(team)
+          createTeam(team)
         } 
       }
     })
 }
 
-function createMember() {
+createMember = () => {
   inquirer.prompt(empQuest)
     .then((answers) => {
       let { empName, role, empId, empEmail, github, internSchool, mgrOffice, } = answers;
@@ -54,30 +43,86 @@ function createMember() {
           console.log('Your employee has no role.');
       }
       inquireMember();
-      // createTeam(team)
     }
     )
 }
-function createTeam(team) {
+
+createTeam = (team) => {
   console.log(team);
   let employees = team.map(employee => {
-    return `<div><h2>${employee.getName()}</h2><p>${employee.getRole()}</p><p>ID: ${employee.getId()}</p><p>E-mail: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></p></div>`;
+    return `<aside>
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2">${employee.name}</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>
+            Role:
+          </td>
+          <td>${employee.role}            </td>
+          </tr>
+          <tr>
+            <td>
+              ID:
+            </td>
+            <td>${employee.id}            </td>
+            </tr>
+            <tr>
+              <td>
+                Email:
+              </td>
+              <td><a href="mailto:${employee.email}">${employee.email}</a></td>
+            </tr>
+            <tr>
+            <td>
+              Office:
+            </td>
+            <td>${employee.officeNumber}</td>
+          </tr>
+          <tr>
+          <td>
+            github:
+          </td>
+          <td><a href="https://www.github.com/${employee.github}" target="_blank">${employee.github}</a></td>
+        </tr>
+        <tr>
+        <td>
+          School:
+        </td>
+        <td>${employee.school}</td>
+      </tr>
+              </tbody>
+              </table></aside>`
+    ;
 
   });
-  // renderTeam(employees);
-  fs.appendFile('./src/team.html', `${employees}`, (err) => err ? console.error(err) : console.log('Team member created!'))
+  renderTeam(employees);
+  // fs.appendFile('./src/team.html', `${employees}`, (err) => err ? console.error(err) : console.log('Team created!'))
   // fs.appendFile('./src/team.json', `${JSON.stringify(team, null, 2)}\n`, (err) => err ? console.error(err) : console.log('Team member created!'))
 }
-// renderTeam = (employees) => {
-//     fs.appendFile('./src/team.html', `${employees}`, (err) => err ? console.error(err) : console.log('Team member created!'))
+renderTeam = (employees) => {
+    fs.appendFile('./src/team.html', `<!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Team Directory</title>
+      <link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css">
+      <link rel="stylesheet" href="../dist/style.css">
+    </head>
+    
+    <body>
+      <header>Current Flying Monkeys</header>
+      <section>    ${employees}      </section>
+      </body>
+      
+      </html>`, (err) => err ? console.error(err) : console.log('Team created!'))
 
-// }
+}
 
-// parseTeam = (team) => {
-//   const teamList = {}
-//   team.forEach(member => {
-//     teamList.add(member);
-//   })
-//   console.log(teamList)
-// }
 inquireMember()
