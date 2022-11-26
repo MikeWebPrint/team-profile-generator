@@ -104,7 +104,7 @@ createTeam = (team) => {
   // fs.appendFile('./src/team.json', `${JSON.stringify(team, null, 2)}\n`, (err) => err ? console.error(err) : console.log('Team member created!'))
 }
 renderTeam = (employees) => {
-    fs.appendFile('./src/team.html', `<!DOCTYPE html>
+    fs.writeFile('./src/team.html', `<!DOCTYPE html>
     <html lang="en">
     
     <head>
@@ -117,7 +117,7 @@ renderTeam = (employees) => {
     </head>
     
     <body>
-      <header>Current Flying Monkeys</header>
+      <header><h1>Team Directory</h1></header>
       <section>    ${employees}      </section>
       </body>
       
