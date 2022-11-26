@@ -20,13 +20,15 @@ const team = [];
 // console.log(Bob);
 
 
-function inquireMember() {
+function inquireMember(team) {
   inquirer.prompt(addMember)
     .then((answers) => {
       if (answers.addMember === 'Yes') {
         createMember();
       } else {
-        createTeam();
+        if (team.length > 0) {
+          team => createTeam(team)
+        } 
       }
     })
 }
@@ -51,14 +53,25 @@ function createMember() {
         default:
           console.log('Your employee has no role.');
       }
-      console.log(team)
-      createTeam(team)
+      inquireMember();
+      // createTeam(team)
     }
     )
 }
 function createTeam(team) {
-  fs.appendFile('./src/team.json', `${JSON.stringify(team, null, 2)}\n`, (err) => err ? console.error(err) : console.log('Team member created!'))
+  console.log(team);
+  let employees = team.map(employee => {
+    return `<div><h2>${employee.getName()}</h2><p>${employee.getRole()}</p><p>ID: ${employee.getId()}</p><p>E-mail: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></p></div>`;
+
+  });
+  // renderTeam(employees);
+  fs.appendFile('./src/team.html', `${employees}`, (err) => err ? console.error(err) : console.log('Team member created!'))
+  // fs.appendFile('./src/team.json', `${JSON.stringify(team, null, 2)}\n`, (err) => err ? console.error(err) : console.log('Team member created!'))
 }
+// renderTeam = (employees) => {
+//     fs.appendFile('./src/team.html', `${employees}`, (err) => err ? console.error(err) : console.log('Team member created!'))
+
+// }
 
 // parseTeam = (team) => {
 //   const teamList = {}
