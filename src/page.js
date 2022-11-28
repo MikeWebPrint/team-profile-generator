@@ -3,8 +3,7 @@
 const createTeam = (team) => {
     // inside this function, have indiviudal functions with html for each role
     const createManager = (manager) => {
-      return `
-      <aside>
+      return `<aside>
     <table>
       <thead>
         <tr>
@@ -37,12 +36,10 @@ const createTeam = (team) => {
             <td>${manager.getOfficeNumber()}</td>
           </tr>
           </tbody>
-              </table></aside>
-      `
+              </table></aside>`
     }
     const createEngineer = (engineer) => {
-      return `
-      <aside>
+      return `<aside>
     <table>
       <thead>
         <tr>
@@ -75,12 +72,10 @@ const createTeam = (team) => {
             <td><a href="https://github.com/${engineer.getGithub()}" target="_blank">${engineer.getGithub()}</a></td>
           </tr>
           </tbody>
-              </table></aside>
-      `
+              </table></aside>`
     }
     const createIntern = (intern) => {
-      return `
-      <aside>
+      return `<aside>
     <table>
       <thead>
         <tr>
@@ -113,10 +108,9 @@ const createTeam = (team) => {
             <td>${intern.getSchool()}</td>
           </tr>
           </tbody>
-              </table></aside>
-      `
+              </table></aside>`
     }
-    // after you've comp;leted each role
+    // after you've completed each role
 
     // create array to push datat into based on role
 
@@ -126,7 +120,9 @@ const createTeam = (team) => {
     htmlArray.push(team.filter(employee => employee.getRole() === "Engineer").map(engineer => createEngineer(engineer)));
     htmlArray.push(team.filter(employee => employee.getRole() === "Intern").map(intern => createIntern(intern)));
     // return that array 
-    return htmlArray.join("")
+
+    return htmlArray.join("").replace(`</aside>,<aside>`, `</aside><aside>`);
+
 }
    // export generic html that runs the function we first created 
 

@@ -1,3 +1,13 @@
 section aside {
+  /* color: green; */
   width: auto;
+}
+aside table {
+  width: auto;
+}
+tr {
+  width: 100%;
+}
+th, td {
+  max-width: 100%;
 }
