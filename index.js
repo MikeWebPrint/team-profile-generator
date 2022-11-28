@@ -102,32 +102,11 @@ createTeam = (team) => {
 
   });
   renderTeam(employees);
-  // fs.appendFile('./src/team.html', `${employees}`, (err) => err ? console.error(err) : console.log('Team created!'))
-  // fs.appendFile('./src/team.json', `${JSON.stringify(team, null, 2)}\n`, (err) => err ? console.error(err) : console.log('Team member created!'))
-}
-// renderTeam = (employees) => {
-//     fs.writeFile('./src/team.html', `<!DOCTYPE html>
-//     <html lang="en">
-    
-//     <head>
-//       <meta charset="UTF-8">
-//       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-//       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-//       <title>Team Directory</title>
-//       <link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css">
-//       <link rel="stylesheet" href="../dist/style.css">
-//     </head>
-    
-//     <body>
-//       <header><h1>Team Directory</h1></header>
-//       <section>    ${employees}      </section>
-//       </body>
-      
-//       </html>`, (err) => err ? console.error(err) : console.log('Team created!'))
 
-// }
+}
+
 function renderTeam(){
-    fs.writeFileSync('./src/team.html', renderHtml(team), 'utf-8')
+    fs.writeFileSync('./dist/team.html', renderHtml(team), 'utf-8')
 }
 
 inquireMember()
