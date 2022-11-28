@@ -12,7 +12,7 @@ describe("Create a new Intern", () => {
     expect(intern.email).toEqual('joe@test.com');
   });
   it('should set the new employee role to Intern', () => {
-    expect(intern.role).toEqual('Intern');
+    expect(intern.getRole()).toEqual('Intern');
   });
   it('should set the new Intern school to RWU', () => {
     expect(intern.school).toEqual('RWU');

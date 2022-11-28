@@ -13,7 +13,7 @@ describe("Create a new employee", () => {
     expect(emp.email).toBe('mike@test.com');
   });
   it('should set the new employee role to employee', () => {
-    expect(emp.role).toBe('Employee');
+    expect(emp.getRole()).toBe('Employee');
   });
 });
 

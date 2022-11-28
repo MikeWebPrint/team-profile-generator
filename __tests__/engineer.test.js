@@ -12,7 +12,7 @@ describe("Create a new Engineer", () => {
     expect(eng.email).toEqual('bob@test.com');
   });
   it('should set the new employee role to Engineer', () => {
-    expect(eng.role).toEqual('Engineer');
+    expect(eng.getRole()).toEqual('Engineer');
   });
   it('should set the new Engineer github username to bobbygithub', () => {
     expect(eng.github).toEqual('bobbygithub');

@@ -12,7 +12,7 @@ describe("Create a new Manager", () => {
     expect(manager.email).toEqual('beth@test.com');
   });
   it('should set the new employee role to Manager', () => {
-    expect(manager.role).toEqual('Manager');
+    expect(manager.getRole()).toEqual('Manager');
   });
   it('should set the new manager office number to A113', () => {
     expect(manager.officeNumber).toEqual('A113');
